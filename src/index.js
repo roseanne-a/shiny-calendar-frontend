@@ -5,7 +5,6 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import CreateEvent from "./events/CreateEvent";
-import NavigationBar from "./layout/NavigationBar";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +20,6 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <NavigationBar />
     <RouterProvider router={router} />
   </React.StrictMode>
 );

@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import Row from "react-bootstrap/Row";
 //import "react-calendar/dist/Calendar.css";
+import NavigationBar from "./layout/NavigationBar";
+import Ticker from "./layout/Ticker";
 
 import Event from "./events/Event";
 //import EventCarousel from "./EventCarousel";
@@ -50,29 +52,28 @@ function App() {
 
   return (
     <>
+      <NavigationBar />
       <div className="container mt-5 mb-5">
+        <Ticker />
         {/* <EventCarousel /> */}
-        <div className="d-flex justify-content-center mt-5">
-          <Calendar
-            className="react-calendar"
-            onChange={onChange}
-            value={value}
-          />
-        </div>
-
-        {allEvents && allEvents.length > 0 ? (
-          <Row xs={1} md={numberOfRows} className="g-4 mt-5">
-            {/* <div className="d-flex flex-row justify-content-evenly mt-5"> */}
-            {allEvents.map((oneEvent) => (
-              <Event key={oneEvent.event_id} event={oneEvent} />
-            ))}
-          </Row>
-        ) : (
-          <div style={{ textAlign: "center" }} className="mt-5">
-            No Events
+        <div className="d-flex justify-content-start mt-5">
+          <div className="m-5">
+            <Calendar
+              className="react-calendar"
+              onChange={onChange}
+              value={value}
+            />
           </div>
-        )}
-        <ErrorAlert error={error} />
+
+          <div className="m-5">
+            {allEvents && allEvents.length > 0
+              ? allEvents.map((oneEvent) => (
+                  <Event key={oneEvent.event_id} event={oneEvent} />
+                ))
+              : "There are no events going on today!"}
+            <ErrorAlert error={error} />
+          </div>
+        </div>
       </div>
     </>
   );
